@@ -9,7 +9,7 @@ package graph
  * @param matrix
  */
 case class Graph(
-  matrix: List[Map[Node, List[Boolean]]]
+  matrix: List[List[Boolean]]
 ) {
 
   /**
@@ -29,7 +29,9 @@ case class Graph(
    */
   def printGraph = {
     for (line <- matrix) {
-      println(line.mkString(" "))
+      println("| " + line.map(b => if (b == false) {
+        0
+      }).mkString(" | ") + " |")
     }
   }
 
