@@ -31,18 +31,17 @@ case class Graph(
     for (line <- matrix) {
       println("| " + line.map(b => if (b == false) {
         0
+      } else {
+        1
       }).mkString(" | ") + " |")
     }
   }
 
   /**
-   * Say if there is an arc between these two
-   * nodes
+   * Say if there is an arc between these two nodes
    * @param s1
    * @param s2
    * @return boolean
    */
-  def isArc(s1: Node, s2: Node): Boolean = {
-    ???
-  }
+  def isArc(s1: Node, s2: Node): Boolean = matrix(s1.nodeNumber)(s2.nodeNumber)
 }
