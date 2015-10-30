@@ -16,13 +16,13 @@ case class Node(
    * Establish a link between two arcs
    * @param adj
    */
-  def addArc(adj: MMap[Int, Int]) = adjacency(nodeNumber) = adjacency.get(nodeNumber).get :+ adj
+  def addArc(adj: MMap[Int, Int]) { adjacency(nodeNumber) = adjacency.get(nodeNumber).get :+ adj }
 
   /**
    * Remove a link between two arcs
    * @param adj
    */
-  def delArc(adj: MMap[Int, Int]) = adjacency(nodeNumber) = adjacency.get(nodeNumber).get - adj
+  def delArc(adj: MMap[Int, Int]) { adjacency(nodeNumber) = adjacency.get(nodeNumber).get - adj }
 
 
   /**
