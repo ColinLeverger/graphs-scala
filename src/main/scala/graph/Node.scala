@@ -1,10 +1,9 @@
 package graph
 
 /**
- * Define a node
- * Represented by an integer (which is basically the number of the node in the graph.Graph's matrix)
- * java's private
+ * Define a Node
+ * Represented by an integer which is basically the number of the node in the graph.
  */
 case class Node(
-  nodeNumber: Int
+    nodeNumber: Int
 )
