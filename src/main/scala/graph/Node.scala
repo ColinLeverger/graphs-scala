@@ -8,7 +8,7 @@ import scala.collection.mutable.{Map => MMap}
  * Represented by an integer which is basically the number of the node in the graph.
  */
 case class Node(
-  var adjacency: MMap[Int, ListBuffer[MMap[Int, Int]]]
+  var adjacency: MMap[Int, ListBuffer[Map[Int, Int]]]
 ) {
   lazy val nodeNumber = adjacency.keys.head
 
@@ -16,13 +16,17 @@ case class Node(
    * Establish a link between two arcs
    * @param adj
    */
-  def addArc(adj: MMap[Int, Int]) { adjacency(nodeNumber) = adjacency.get(nodeNumber).get :+ adj }
+  def addArc(adj: Map[Int, Int]) {
+    adjacency(nodeNumber) = adjacency.get(nodeNumber).get :+ adj
+  }
 
   /**
    * Remove a link between two arcs
    * @param adj
    */
-  def delArc(adj: MMap[Int, Int]) { adjacency(nodeNumber) = adjacency.get(nodeNumber).get - adj }
+  def delArc(adj: Map[Int, Int]) {
+    adjacency(nodeNumber) = adjacency.get(nodeNumber).get - adj
+  }
 
 
   /**

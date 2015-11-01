@@ -1,8 +1,8 @@
 package tools
 
-import scala.collection.mutable.{Map => MMap}
-
 import graph._
+
+import scala.collection.mutable.{Map => MMap}
 
 /**
  * Created by colinleverger on 30/10/15.
@@ -17,7 +17,7 @@ object Warshall {
         if (GraphTools.isArc(graphToSendBack, x, i)) {
           for (y <- 1 to n) {
             if (GraphTools.isArc(graphToSendBack, x, y)) {
-              graphToSendBack.giveMeThisNode(x).addArc(MMap(y -> 1))
+              graphToSendBack.giveMeThisNode(x).addArc(Map(y -> 1))
             }
           }
         }
