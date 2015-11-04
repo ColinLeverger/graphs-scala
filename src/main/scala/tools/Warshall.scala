@@ -10,10 +10,10 @@ import scala.collection.mutable.{Map => MMap}
 object Warshall {
 
   /**
-   * Aply Warshall to the graph given in parameter
+   * Apply Warshall to the given graph
    * @param graph
    */
-  def applyWarshall(graph: Graph): Unit = {
+  def applyWarshall(graph: Graph) {
     val n = GraphTools.nbNode(graph)
 
     for (i <- 1 to n) {
@@ -22,7 +22,7 @@ object Warshall {
           for (y <- 1 to n) {
             if (GraphTools.isArc(graph, i, y)) {
               if (!GraphTools.isArc(graph, x, y)) {
-                println("adding an arc between " + x + " and " + y)
+                println("Adding an arc from node " + x + " to node " + y)
                 graph.giveMeThisNode(x).addArc(Map(y -> 1))
               }
             }

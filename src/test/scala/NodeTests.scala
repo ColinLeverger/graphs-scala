@@ -33,7 +33,7 @@ class NodeTests extends FunSuite with Matchers {
     val n2 = Node(MMap(2 -> ListBuffer(Map(1 -> 1))))
     val n3 = Node(MMap(3 -> ListBuffer(Map(1 -> 1))))
     val graph = new Graph(List(n1, n2, n3))
-    graph.giveMeThisNode(1).nodeNumber should be (1)
+    graph.giveMeThisNode(1).nodeNumber should be(1)
     graph.giveMeThisNode(1).printNode
   }
 

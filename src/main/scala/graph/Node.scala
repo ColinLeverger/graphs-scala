@@ -4,7 +4,9 @@ import scala.collection.mutable.{ListBuffer, Map => MMap}
 
 /**
  * Define a Node
- * Represented by an integer which is basically the number of the node in the graph.
+ * Represented by the variable adjacency, which is a mutable Map (MMap) composed of
+ * an Int (the number of the node) followed by a mutable list which contain
+ * the descendants of this node.
  */
 case class Node(
   var adjacency: MMap[Int, ListBuffer[Map[Int, Int]]]
@@ -27,6 +29,10 @@ case class Node(
     adjacency(nodeNumber) = adjacency.get(nodeNumber).get - adj
   }
 
+  /**
+   * Return the successors of this node
+   * @return sorted list of successors
+   */
   def giveSuccessors: List[Int] = {
     val listOfSuccessors = adjacency.get(nodeNumber).get.toList
 
