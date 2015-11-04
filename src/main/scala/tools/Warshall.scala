@@ -9,24 +9,26 @@ import scala.collection.mutable.{Map => MMap}
  */
 object Warshall {
 
-  def doWarshall(graph: Graph): Graph = {
-    val graphToSendBack = graph
-    val n = GraphTools.nbNode(graphToSendBack)
+  /**
+   * Aply Warshall to the graph given in parameter
+   * @param graph
+   */
+  def applyWarshall(graph: Graph): Unit = {
+    val n = GraphTools.nbNode(graph)
 
     for (i <- 1 to n) {
       for (x <- 1 to n) {
-        if (GraphTools.isArc(graphToSendBack, x, i)) {
+        if (GraphTools.isArc(graph, x, i)) {
           for (y <- 1 to n) {
-            if (GraphTools.isArc(graphToSendBack, i, y)) {
-              if (!GraphTools.isArc(graphToSendBack, x, y)) {
+            if (GraphTools.isArc(graph, i, y)) {
+              if (!GraphTools.isArc(graph, x, y)) {
                 println("adding an arc between " + x + " and " + y)
-                graphToSendBack.giveMeThisNode(x).addArc(Map(y -> 1))
+                graph.giveMeThisNode(x).addArc(Map(y -> 1))
               }
             }
           }
         }
       }
     }
-    graphToSendBack
   }
 }

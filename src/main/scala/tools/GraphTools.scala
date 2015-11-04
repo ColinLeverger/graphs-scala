@@ -8,7 +8,7 @@ object GraphTools {
    * Create an emptyGraph
    * @return emptyGraph
    */
-  def createEmptyGraph(): Graph = Graph(List[Node]())
+  def createEmptyGraph(): Graph = new Graph(List[Node]())
 
   /**
    * Add a node to a graph
@@ -16,7 +16,7 @@ object GraphTools {
    * @param node
    * @return newGraph
    */
-  def addNode(graph: Graph, node: Node): Graph = Graph(graph.matrix :+ node)
+  def addNode(graph: Graph, node: Node): Graph = new Graph(graph.matrix :+ node)
 
   /**
    * Remove the Node "nodeNumber" from a graph
@@ -24,7 +24,7 @@ object GraphTools {
    * @param node
    * @return updatedGraph
    */
-  def delNode(graph: Graph, node: Node): Graph = Graph(graph.matrix.filter(_ != node))
+  def delNode(graph: Graph, node: Node): Graph = new Graph(graph.matrix.filter(_ != node))
 
   /**
    * Return if this graph is empty

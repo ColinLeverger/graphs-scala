@@ -32,9 +32,14 @@ class NodeTests extends FunSuite with Matchers {
     val n1 = Node(MMap(1 -> ListBuffer(Map(1 -> 1))))
     val n2 = Node(MMap(2 -> ListBuffer(Map(1 -> 1))))
     val n3 = Node(MMap(3 -> ListBuffer(Map(1 -> 1))))
-    val graph = Graph(List(n1,n2,n3))
+    val graph = new Graph(List(n1, n2, n3))
     graph.giveMeThisNode(1).nodeNumber should be (1)
     graph.giveMeThisNode(1).printNode
+  }
+
+  test("give the successor of this node test") {
+    val n1 = Node(MMap(1 -> ListBuffer(Map(2 -> 1), Map(3 -> 1), Map(4 -> 1))))
+    n1.giveSuccessors should equal(List(2, 3, 4))
   }
 
 }

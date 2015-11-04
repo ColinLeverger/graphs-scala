@@ -1,7 +1,6 @@
 package graph
 
-import scala.collection.mutable.ListBuffer
-import scala.collection.mutable.{Map => MMap}
+import scala.collection.mutable.{ListBuffer, Map => MMap}
 
 /**
  * Define a Node
@@ -28,6 +27,17 @@ case class Node(
     adjacency(nodeNumber) = adjacency.get(nodeNumber).get - adj
   }
 
+  def giveSuccessors: List[Int] = {
+    val listOfSuccessors = adjacency.get(nodeNumber).get.toList
+
+    val successorsKeys = for {
+      successor <- listOfSuccessors
+    } yield {
+        successor.keys.head
+      }
+
+    successorsKeys.sortWith(_ < _)
+  }
 
   /**
    * Count the number of successors
