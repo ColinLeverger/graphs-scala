@@ -8,4 +8,6 @@ case class Graph(
   matrix: List[Node]
 ) {
   def giveMeThisNode(nodeNumber: Int): Node = matrix.filter(_.adjacency.keySet.contains(nodeNumber)).head
+
+  def printGraph = matrix.foreach{println}
 }
