@@ -2,7 +2,7 @@ import graph._
 import tools._
 import org.scalatest._
 
-import scala.collection.mutable.{ListBuffer, Map => MMap}
+import scala.collection.mutable.{Map => MMap}
 
 /**
  * Created by colinleverger on 04/11/15.
@@ -11,12 +11,12 @@ class WarshallTests extends FunSuite with Matchers {
 
   test("Warshall algorithm test - use of the Graph provided in the lesson") {
     // Create the nodes we need
-    val n1 = Node(MMap(1 -> ListBuffer(Map(2 -> 1), Map(4 -> 1))))
-    val n2 = Node(MMap(2 -> ListBuffer(Map(3 -> 1), Map(5 -> 1))))
-    val n3 = Node(MMap(3 -> ListBuffer(Map(5 -> 1))))
-    val n4 = Node(MMap(4 -> ListBuffer(Map(3 -> 1))))
-    val n5 = Node(MMap(5 -> ListBuffer(Map(4 -> 1))))
-    val n6 = Node(MMap(6 -> ListBuffer(Map(3 -> 1), Map(5 -> 1))))
+    val n1 = Node(Map(1 -> MMap(2 -> 1, 4 -> 1)))
+    val n2 = Node(Map(2 -> MMap(3 -> 1, 5 -> 1)))
+    val n3 = Node(Map(3 -> MMap(5 -> 1)))
+    val n4 = Node(Map(4 -> MMap(3 -> 1)))
+    val n5 = Node(Map(5 -> MMap(4 -> 1)))
+    val n6 = Node(Map(6 -> MMap(3 -> 1, 5 -> 1)))
 
     // Add the nodes inside a new graph
     val g1 = new Graph(List(n1, n2, n3, n4, n5, n6))

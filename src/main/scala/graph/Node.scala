@@ -1,6 +1,6 @@
 package graph
 
-import scala.collection.mutable.{ListBuffer, Map => MMap}
+import scala.collection.mutable.{Map => MMap}
 
 /**
  * Define a Node
@@ -9,25 +9,26 @@ import scala.collection.mutable.{ListBuffer, Map => MMap}
  * the descendants of this node.
  */
 case class Node(
-  var adjacency: MMap[Int, ListBuffer[Map[Int, Int]]]
+  var adjacency: Map[Int, MMap[Int, Int]]
 ) {
   lazy val nodeNumber = adjacency.keys.head
-  lazy val listOfSuccessors = adjacency.get(nodeNumber).get.toList
+  lazy val mapOfSuccessors = adjacency.get(nodeNumber).get
 
   /**
    * Establish a link between two arcs
-   * @param adj
+   * @param key
+   * @param value
    */
-  def addArc(adj: Map[Int, Int]) {
-    adjacency(nodeNumber) = adjacency.get(nodeNumber).get :+ adj
+  def addArc(key:Int,value:Int) {
+    mapOfSuccessors(key) = value
   }
 
   /**
    * Remove a link between two arcs
-   * @param adj
+   * @param key to remove
    */
-  def delArc(adj: Map[Int, Int]) {
-    adjacency(nodeNumber) = adjacency.get(nodeNumber).get - adj
+  def delArc(key:Int) {
+    mapOfSuccessors -= key
   }
 
   /**
@@ -36,19 +37,19 @@ case class Node(
    */
   def giveSuccessorsKeys: List[Int] = {
     val successorsKeys = for {
-      successor <- listOfSuccessors
+      successor <- mapOfSuccessors
     } yield {
-        successor.keys.head
+        successor._1
       }
 
-    successorsKeys.sortWith(_ < _)
+    successorsKeys.toList.sortWith(_ < _)
   }
 
   /**
    * Count the number of successors
    * @return numberOfSuccessor
    */
-  def numberOfSuccessor: Int = adjacency(nodeNumber).size
+  def numberOfSuccessor: Int = mapOfSuccessors.size
 
   /**
    * Print the graph
