@@ -54,23 +54,16 @@ class Graph(
    * @param nodeNumber
    * @return Node
    */
-  def giveMeThisNode(nodeNumber: Int): Node = _matrix.filter(_.adjacency.keySet.contains(nodeNumber)).head
+  def giveNode(nodeNumber: Int): Node = _matrix.filter(_.adjacency.keySet.contains(nodeNumber)).head
+  
+  def giveSuccessors(node:Node): Map[Int,Int] = {
+    giveNode(node.nodeNumber).successors
+  }
 
   //REMINDER : Node is adjacency: MMap[Int, ListBuffer[MMap[Int, Int]]]
-  /*def weightBetweenTheseTwoArcs(node1: Int, node2: Int): Int = {
-    val n1 = giveMeThisNode(node1)
-    val listOfSuccessors = n1.adjacency.get(n1.nodeNumber).get
-
-    val successorsValues = for {
-      successor <- listOfSuccessors
-    } yield {
-        if (successor.keys.head == node2)
-          successor.values.head
-        else
-          -1
-      }
-    max(successorsValues.toList)
-  }*/
+  def weightBetweenTheseTwoNodes(node1: Int, node2: Int): Int = {
+    giveNode(node1).giveWeightOfThisSuccessor(node2).getOrElse(-1)
+  }
 
   /**
    * Find the biggest element in a list of int

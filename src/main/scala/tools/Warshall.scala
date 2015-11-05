@@ -23,7 +23,7 @@ object Warshall {
             if (graph.isArc(i, y)) {
               if (!graph.isArc(x, y)) {
                 println("Adding an arc from node " + x + " to node " + y)
-                graph.giveMeThisNode(x).addArc(y, 1)
+                graph.giveNode(x).addArc(y, 1)
               }
             }
           }

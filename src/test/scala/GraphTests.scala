@@ -50,7 +50,9 @@ class GraphTests extends FunSuite with Matchers {
     val n1 = Node(Map(1 -> MMap(2 -> 23, 3 -> 24)))
     val notEmptyGraph = emptyGraph.addNode(n1)
 
-    //notEmptyGraph.weightBetweenTheseTwoArcs(1, 2) should be(23)
+    notEmptyGraph.weightBetweenTheseTwoNodes(1, 2) should be(23)
+    notEmptyGraph.weightBetweenTheseTwoNodes(1, 3) should be(24)
+    notEmptyGraph.weightBetweenTheseTwoNodes(1, 4) should be(-1)
   }
 
 }

@@ -25,12 +25,12 @@ class WarshallTests extends FunSuite with Matchers {
     Warshall.applyWarshall(g1)
 
     // Check the output: is my Warshall function doing the good things ?
-    g1.giveMeThisNode(1).giveSuccessorsKeys should be(List(2, 3, 4, 5))
-    g1.giveMeThisNode(2).giveSuccessorsKeys should be(List(3, 4, 5))
-    g1.giveMeThisNode(3).giveSuccessorsKeys should be(List(3, 4, 5))
-    g1.giveMeThisNode(4).giveSuccessorsKeys should be(List(3, 4, 5))
-    g1.giveMeThisNode(5).giveSuccessorsKeys should be(List(3, 4, 5))
-    g1.giveMeThisNode(6).giveSuccessorsKeys should be(List(3, 4, 5))
+    g1.giveNode(1).giveSuccessorsKeys should be(List(2, 3, 4, 5))
+    g1.giveNode(2).giveSuccessorsKeys should be(List(3, 4, 5))
+    g1.giveNode(3).giveSuccessorsKeys should be(List(3, 4, 5))
+    g1.giveNode(4).giveSuccessorsKeys should be(List(3, 4, 5))
+    g1.giveNode(5).giveSuccessorsKeys should be(List(3, 4, 5))
+    g1.giveNode(6).giveSuccessorsKeys should be(List(3, 4, 5))
   }
 
 }

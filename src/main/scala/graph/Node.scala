@@ -19,7 +19,7 @@ case class Node(
    * @param key
    * @param value
    */
-  def addArc(key:Int,value:Int) {
+  def addArc(key: Int, value: Int) {
     mapOfSuccessors(key) = value
   }
 
@@ -27,7 +27,7 @@ case class Node(
    * Remove a link between two arcs
    * @param key to remove
    */
-  def delArc(key:Int) {
+  def delArc(key: Int) {
     mapOfSuccessors -= key
   }
 
@@ -44,6 +44,19 @@ case class Node(
 
     successorsKeys.toList.sortWith(_ < _)
   }
+
+  /**
+   * Give the weight of the successor
+   * @param nodeNumber
+   * @return weight
+   */
+  def giveWeightOfThisSuccessor(nodeNumber: Int): Option[Int] = mapOfSuccessors.get(nodeNumber)
+
+  /**
+   * Give the successors of this node
+   * @return successors (Map)
+   */
+  def successors = mapOfSuccessors.toMap
 
   /**
    * Count the number of successors
