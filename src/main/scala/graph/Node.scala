@@ -12,6 +12,7 @@ case class Node(
   var adjacency: MMap[Int, ListBuffer[Map[Int, Int]]]
 ) {
   lazy val nodeNumber = adjacency.keys.head
+  lazy val listOfSuccessors = adjacency.get(nodeNumber).get.toList
 
   /**
    * Establish a link between two arcs
@@ -30,12 +31,10 @@ case class Node(
   }
 
   /**
-   * Return the successors of this node
+   * Return the successors keys of this node
    * @return sorted list of successors
    */
-  def giveSuccessors: List[Int] = {
-    val listOfSuccessors = adjacency.get(nodeNumber).get.toList
-
+  def giveSuccessorsKeys: List[Int] = {
     val successorsKeys = for {
       successor <- listOfSuccessors
     } yield {

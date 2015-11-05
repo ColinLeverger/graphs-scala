@@ -39,7 +39,7 @@ class NodeTests extends FunSuite with Matchers {
 
   test("give the successor of this node test") {
     val n1 = Node(MMap(1 -> ListBuffer(Map(2 -> 1), Map(3 -> 1), Map(4 -> 1))))
-    n1.giveSuccessors should equal(List(2, 3, 4))
+    n1.giveSuccessorsKeys should equal(List(2, 3, 4))
   }
 
 }

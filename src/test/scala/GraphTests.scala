@@ -46,4 +46,12 @@ class GraphTests extends FunSuite with Matchers {
     GraphTools.isArc(notEmptyGraph,2, 1) should be(false)
   }
 
+  test("weight between nodes test") {
+    val emptyGraph = GraphTools.createEmptyGraph()
+    val n1 = Node(MMap(1 -> ListBuffer(Map(2 -> 23), Map(3 -> 24))))
+    var notEmptyGraph = GraphTools.addNode(emptyGraph, n1)
+
+    notEmptyGraph.weightBetweenTheseTwoArcs(1,2) should be (23)
+  }
+
 }
