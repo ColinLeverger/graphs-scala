@@ -9,7 +9,7 @@ import scala.collection.mutable.{Map => MMap}
  * the descendants of this node.
  */
 case class Node(
-  var adjacency: Map[Int, MMap[Int, Int]]
+  adjacency: Map[Int, MMap[Int, Int]]
 ) {
   lazy val nodeNumber = adjacency.keys.head
   lazy val mapOfSuccessors = adjacency.get(nodeNumber).get
@@ -65,7 +65,7 @@ case class Node(
   def numberOfSuccessor: Int = mapOfSuccessors.size
 
   /**
-   * Print the graph
+   * Print the node
    */
   def printNode = adjacency.foreach(println)
 }
