@@ -56,11 +56,22 @@ class Graph(
     */
   def giveNode(n: Int): Node = _matrix.filter(_.nodeNumber == n).head
 
+  /**
+    * Return the sucessors of this node
+    * @param node
+    * @return Map[Int,Int] wich represents the successors
+    */
   def giveSuccessors(node: Node): Map[Int, Int] = {
     giveNode(node.nodeNumber).successors
   }
 
-  //REMINDER : Node is adjacency: MMap[Int, ListBuffer[MMap[Int, Int]]]
+  /**
+    * Return the weight between these two nodes
+    * @param node1
+    * @param node2
+    * @return weight
+    * @throws NoSuchElementException if there is no connection between the nodes provided
+    */
   def weightBetweenTheseTwoNodes(node1: Int, node2: Int): Int = {
     giveNode(node1).giveWeightOfThisSuccessor(node2)
   }
