@@ -49,7 +49,7 @@ case class Node(
     * @param nodeNumber
     * @return weight
     */
-  def giveWeightOfThisSuccessor(nodeNumber: Int): Option[Int] = adjacency.get(nodeNumber)
+  def giveWeightOfThisSuccessor(nodeNumber: Int): Int = adjacency.get(nodeNumber).getOrElse(throw new NoSuchElementException)
 
   /**
     * Give the successors of this node

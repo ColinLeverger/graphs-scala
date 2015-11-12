@@ -62,7 +62,7 @@ class Graph(
 
   //REMINDER : Node is adjacency: MMap[Int, ListBuffer[MMap[Int, Int]]]
   def weightBetweenTheseTwoNodes(node1: Int, node2: Int): Int = {
-    giveNode(node1).giveWeightOfThisSuccessor(node2).getOrElse(-1)
+    giveNode(node1).giveWeightOfThisSuccessor(node2)
   }
 
   /**
