@@ -11,8 +11,8 @@ import scala.collection.mutable.{Map => MMap}
 case class Node(
   adjacency: Map[Int, MMap[Int, Int]]
 ) {
-  lazy val nodeNumber = adjacency.keys.head
-  lazy val mapOfSuccessors = adjacency.get(nodeNumber).get
+  val nodeNumber = adjacency.keys.head
+  val mapOfSuccessors = adjacency.get(nodeNumber).getOrElse(MMap[Int, Int]())
 
   /**
    * Establish a link between two arcs
