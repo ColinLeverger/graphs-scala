@@ -46,15 +46,15 @@ class Graph(
     * @return boolean
     */
   def isArc(s1: Int, s2: Int): Boolean = {
-    _matrix.filter(_.adjacency.keySet.contains(s1)).head.adjacency(s1).keys.toList.contains(s2)
+    _matrix.filter(_.nodeNumber == s1).head.adjacency.keySet.toList.contains(s2)
   }
 
   /**
     * Return the node numbered by the param nodeNumber
-    * @param nodeNumber
+    * @param n nodeNumber
     * @return Node
     */
-  def giveNode(nodeNumber: Int): Node = _matrix.filter(_.adjacency.keySet.contains(nodeNumber)).head
+  def giveNode(n: Int): Node = _matrix.filter(_.nodeNumber == n).head
 
   def giveSuccessors(node: Node): Map[Int, Int] = {
     giveNode(node.nodeNumber).successors

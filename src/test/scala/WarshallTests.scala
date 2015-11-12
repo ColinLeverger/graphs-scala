@@ -11,12 +11,12 @@ class WarshallTests extends FunSuite with Matchers {
 
   test("Warshall algorithm test - use of the Graph provided in the lesson") {
     // Create the nodes we need
-    val n1 = Node(Map(1 -> MMap(2 -> 1, 4 -> 1)))
-    val n2 = Node(Map(2 -> MMap(3 -> 1, 5 -> 1)))
-    val n3 = Node(Map(3 -> MMap(5 -> 1)))
-    val n4 = Node(Map(4 -> MMap(3 -> 1)))
-    val n5 = Node(Map(5 -> MMap(4 -> 1)))
-    val n6 = Node(Map(6 -> MMap(3 -> 1, 5 -> 1)))
+    val n1 = Node(1,MMap(2 -> 1, 4 -> 1))
+    val n2 = Node(2,MMap(3 -> 1, 5 -> 1))
+    val n3 = Node(3,MMap(5 -> 1))
+    val n4 = Node(4,MMap(3 -> 1))
+    val n5 = Node(5,MMap(4 -> 1))
+    val n6 = Node(6,MMap(3 -> 1, 5 -> 1))
 
     // Add the nodes inside a new graph
     val g1 = new Graph(List(n1, n2, n3, n4, n5, n6))

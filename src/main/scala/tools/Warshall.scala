@@ -22,9 +22,11 @@ object Warshall {
       y <- 1 to n
     } {
       if (graph.isArc(x, i) && graph.isArc(i, y) && !graph.isArc(x, y)) {
-          println("Adding an arc from node " + x + " to node " + y)
-          graph.giveNode(x).addArc(y, 1)
+        println("Adding an arc from node " + x + " to node " + y)
+        graph.giveNode(x).addArc(y, 1)
       }
     }
   }
 }
+
+
