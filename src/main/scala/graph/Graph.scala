@@ -20,7 +20,7 @@ class Graph(
     * @param node
     * @return updatedGraph
     */
-  def delNode(node: Node): Graph = new Graph(matrix.filter(_ != node))
+  def delNode(node: Node): Graph = new Graph(_matrix.filter(_ != node))
 
   /**
     * Return if this graph is empty
@@ -32,7 +32,7 @@ class Graph(
     * Return the number of nodes in this graph
     * @return number of nodes of this graph
     */
-  def nbNode: Int = _matrix.size
+  def nbNodes: Int = _matrix.size
 
   /**
     * Print the graph
@@ -55,6 +55,18 @@ class Graph(
     * @return Node
     */
   def giveNode(n: Int): Node = _matrix.filter(_.nodeNumber == n).head
+
+  /**
+    * Return the node numbered by the param nodeNumber
+    * @return ListOfNodes
+    */
+  def giveNodes: List[Int] = {
+    for {
+      node <- _matrix
+    } yield {
+      node.nodeNumber
+    }
+  }
 
   /**
     * Return the sucessors of this node

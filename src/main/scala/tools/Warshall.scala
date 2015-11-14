@@ -15,7 +15,7 @@ object Warshall {
     * @return nothing, it modify the graph itself!
     */
   def applyWarshall(graph: Graph) {
-    val n = graph.nbNode
+    val n = graph.nbNodes
 
     for {
       i <- 1 to n

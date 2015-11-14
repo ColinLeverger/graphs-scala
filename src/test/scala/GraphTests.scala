@@ -14,9 +14,9 @@ class GraphTests extends FunSuite with Matchers {
     val n2 = Node(2,MMap(4 -> 1))
     val graph = new Graph(List(n1))
     graph.isEmpty should be(false)
-    graph.nbNode should be(1)
+    graph.nbNodes should be(1)
     val updatedGraph = graph.addNode(n2)
-    updatedGraph.nbNode should be(2)
+    updatedGraph.nbNodes should be(2)
   }
 
   test("del node test") {
@@ -24,12 +24,12 @@ class GraphTests extends FunSuite with Matchers {
     val n2 = Node(2,MMap(4 -> 1))
     val n3 = Node(3,MMap(5 -> 1))
     val graph = new Graph(List(n1, n2, n3))
-    graph.nbNode should be(3)
+    graph.nbNodes should be(3)
 
     var updatedGraph = graph.delNode(n1)
-    updatedGraph.nbNode should be(2)
+    updatedGraph.nbNodes should be(2)
     updatedGraph = updatedGraph.delNode(n2)
-    updatedGraph.nbNode should be(1)
+    updatedGraph.nbNodes should be(1)
   }
 
   test("connexion between nodes test") {
