@@ -7,19 +7,34 @@ import graph._
   */
 object Dijkstra {
 
-  def applyDijktra(graph: Graph, startingNode: Node) = {
+  def applyDijktra(graph: Graph): List[Int] = {
     val X = graph.giveNodes
-    var E = startingNode.nodeNumber
+    var E = List(1)
     val n = graph.nbNodes
 
     val D = for {
       i <- 2 to n
     } yield {
-      graph.giveNode(E).giveWeightOfThisSuccessor(i)
+      graph.giveNode(1).giveWeightOfThisSuccessor(i)
     }
-    D.foreach(println)
 
+    for {
+      i <- 2 to n
+    } {
+      if (!E.contains(i)) {
+        val t = D.zipWithIndex.min._2 + 2
+        E :+ t
+        for {
+          successor <- graph.giveNode(t).giveSuccessorsKeys
+        } {
+          D.updated(successor, min(D(successor), D(t) + graph.giveNode(successor).giveWeightOfThisSuccessor(t)))
+        }
+      }
+    }
+    D.toList
   }
+
+  def min(a: Int, b: Int): Int = List(a, b).min
 
   /*
     permet de connaitre le poids du chemin le plus court

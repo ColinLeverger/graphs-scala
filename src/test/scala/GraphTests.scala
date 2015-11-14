@@ -46,7 +46,7 @@ class GraphTests extends FunSuite with Matchers {
 
     graph.weightBetweenTheseTwoNodes(1, 2) should be(23)
     graph.weightBetweenTheseTwoNodes(1, 3) should be(24)
-    an [NoSuchElementException] should be thrownBy(graph.weightBetweenTheseTwoNodes(1, 4))
+    graph.weightBetweenTheseTwoNodes(1, 4) should be(-1000)
   }
 
 }
