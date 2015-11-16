@@ -25,12 +25,12 @@ class WarshallTests extends FunSuite with Matchers {
     Warshall.applyWarshall(g1)
 
     // Check the output: is my Warshall function doing the good things ?
-    g1.giveNode(1).giveSuccessorsKeys should be(List(2, 3, 4, 5))
-    g1.giveNode(2).giveSuccessorsKeys should be(List(3, 4, 5))
-    g1.giveNode(3).giveSuccessorsKeys should be(List(3, 4, 5))
-    g1.giveNode(4).giveSuccessorsKeys should be(List(3, 4, 5))
-    g1.giveNode(5).giveSuccessorsKeys should be(List(3, 4, 5))
-    g1.giveNode(6).giveSuccessorsKeys should be(List(3, 4, 5))
+    g1.getNode(1).getSuccessorsKeys should be(List(2, 3, 4, 5))
+    g1.getNode(2).getSuccessorsKeys should be(List(3, 4, 5))
+    g1.getNode(3).getSuccessorsKeys should be(List(3, 4, 5))
+    g1.getNode(4).getSuccessorsKeys should be(List(3, 4, 5))
+    g1.getNode(5).getSuccessorsKeys should be(List(3, 4, 5))
+    g1.getNode(6).getSuccessorsKeys should be(List(3, 4, 5))
   }
 
   test("Warshall algorithm test - graph provided in the exam") {
@@ -47,10 +47,10 @@ class WarshallTests extends FunSuite with Matchers {
     Warshall.applyWarshall(g1)
 
     // Check the output: is my Warshall function doing the good things ?
-    g1.giveNode(1).giveSuccessorsKeys should be(List(2, 3, 4))
-    g1.giveNode(2).giveSuccessorsKeys should be(List(3, 4))
-    g1.giveNode(3).giveSuccessorsKeys should be(List(4))
-    g1.giveNode(4).giveSuccessorsKeys should be(List())
+    g1.getNode(1).getSuccessorsKeys should be(List(2, 3, 4))
+    g1.getNode(2).getSuccessorsKeys should be(List(3, 4))
+    g1.getNode(3).getSuccessorsKeys should be(List(4))
+    g1.getNode(4).getSuccessorsKeys should be(List())
   }
 
 }

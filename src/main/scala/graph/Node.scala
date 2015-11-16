@@ -12,6 +12,8 @@ case class Node(
   nodeNumber: Int,
   adjacency: MMap[Int, Int]
 ) {
+  val infinite = 99999
+  val noConnection = -1
 
   /**
     * Establish a link between two arcs
@@ -34,7 +36,7 @@ case class Node(
     * Return the successors keys of this node
     * @return sorted list of successors
     */
-  def giveSuccessorsKeys: List[Int] = {
+  def getSuccessorsKeys: List[Int] = {
     val successorsKeys = for {
       successor <- adjacency
     } yield {
@@ -45,11 +47,20 @@ case class Node(
   }
 
   /**
-    * Give the weight of the successor
-    * @param nodeNumber
+    * Give the weight of the successor.
+    * If no connection, return -1
+    * @param n
     * @return weight
     */
-  def giveWeightOfThisSuccessor(nodeNumber: Int): Int = adjacency.get(nodeNumber).getOrElse(-1000)
+  def positiveWeightOfThisSuccessor(n: Int): Int = adjacency.get(n).getOrElse(noConnection)
+
+  /**
+    * Give the weight of the successor
+    * If no connection yet, return 99999
+    * @param n
+    * @return weight
+    */
+  def dijkstraWeightOfThisSuccessor(n: Int): Int = adjacency.get(n).getOrElse(infinite)
 
   /**
     * Give the successors of this node

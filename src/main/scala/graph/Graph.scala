@@ -54,18 +54,19 @@ class Graph(
     * @param n nodeNumber
     * @return Node
     */
-  def giveNode(n: Int): Node = _matrix.filter(_.nodeNumber == n).head
+  def getNode(n: Int): Node = _matrix.filter(_.nodeNumber == n).head
 
   /**
     * Return the node numbered by the param nodeNumber
     * @return ListOfNodes
     */
-  def giveNodes: List[Int] = {
-    for {
+  def getNodes: List[Int] = {
+    val listOfNodes = for {
       node <- _matrix
     } yield {
       node.nodeNumber
     }
+    listOfNodes.sortWith(_ < _)
   }
 
   /**
@@ -73,19 +74,32 @@ class Graph(
     * @param node
     * @return Map[Int,Int] wich represents the successors
     */
-  def giveSuccessors(node: Node): Map[Int, Int] = {
-    giveNode(node.nodeNumber).successors
+  def getSuccessors(node: Node): Map[Int, Int] = {
+    getNode(node.nodeNumber).successors
   }
 
   /**
-    * Return the weight between these two nodes
+    * Return the positive weight between these two nodes
+    * If there is no connection between the two nodes given, return -1
     * @param node1
     * @param node2
     * @return weight
     * @throws NoSuchElementException if there is no connection between the nodes provided
     */
-  def weightBetweenTheseTwoNodes(node1: Int, node2: Int): Int = {
-    giveNode(node1).giveWeightOfThisSuccessor(node2)
+  def positiveWeightBetweenTheseTwoNodes(node1: Int, node2: Int): Int = {
+    getNode(node1).positiveWeightOfThisSuccessor(node2)
+  }
+
+  /**
+    * Return the positive weight between these two nodes
+    * If there is no connection between the two nodes given, return -1
+    * @param node1
+    * @param node2
+    * @return weight
+    * @throws NoSuchElementException if there is no connection between the nodes provided
+    */
+  def dijkstraWeightBetweenTheseTwoNodes(node1: Int, node2: Int): Int = {
+    getNode(node1).dijkstraWeightOfThisSuccessor(node2)
   }
 
   /**

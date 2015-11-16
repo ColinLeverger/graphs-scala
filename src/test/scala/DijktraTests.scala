@@ -9,6 +9,11 @@ import scala.collection.mutable.{Map => MMap}
   */
 class DijktraTests extends FunSuite with Matchers {
 
+  test("Choose T test") {
+    val D = List(10,30,99999,40)
+    Dijkstra.chooseT(D) should be(10,2)
+  }
+
   test("Dijktra algorithm test - graph provided in the lesson") {
     // Create the nodes we need
     val n1 = Node(1, MMap(2 -> 10, 5 -> 100, 4 -> 30))

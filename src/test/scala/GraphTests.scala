@@ -40,13 +40,27 @@ class GraphTests extends FunSuite with Matchers {
     graph.isArc(2, 1) should be(false)
   }
 
+  test("give nodes test") {
+    val n1 = Node(1,MMap(2 -> 1, 3 -> 1))
+    val n2 = Node(2,MMap(3 -> 1, 4 -> 1))
+    val graph = new Graph(List(n1, n2))
+    graph.getNodes should be(List(1,2))
+  }
+
+  test("nbNode test") {
+    val n1 = Node(1,MMap(2 -> 1, 3 -> 1))
+    val n2 = Node(2,MMap(3 -> 1, 4 -> 1))
+    val graph = new Graph(List(n1, n2))
+    graph.nbNodes should be(2)
+  }
+
   test("positive weight between nodes test") {
     val n1 = Node(1,MMap(2 -> 23, 3 -> 24))
     val graph = new Graph(List(n1))
 
-    graph.weightBetweenTheseTwoNodes(1, 2) should be(23)
-    graph.weightBetweenTheseTwoNodes(1, 3) should be(24)
-    graph.weightBetweenTheseTwoNodes(1, 4) should be(-1000)
+    graph.positiveWeightBetweenTheseTwoNodes(1, 2) should be(23)
+    graph.positiveWeightBetweenTheseTwoNodes(1, 3) should be(24)
+    graph.positiveWeightBetweenTheseTwoNodes(1, 4) should be(-1)
   }
 
 }

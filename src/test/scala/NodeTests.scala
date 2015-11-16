@@ -33,13 +33,13 @@ class NodeTests extends FunSuite with Matchers {
     val n2 = Node(adjacency=MMap(1 -> 1),nodeNumber=2)
     val n3 = Node(adjacency=MMap(1 -> 1),nodeNumber=3)
     val graph = new Graph(List(n1, n2, n3))
-    graph.giveNode(1).nodeNumber should be(1)
-    graph.giveNode(1).printNode
+    graph.getNode(1).nodeNumber should be(1)
+    graph.getNode(1).printNode
   }
 
   test("give the successor of this node test") {
     val n1 = Node(adjacency=MMap(2 -> 1, 3 -> 1, 4 -> 1),nodeNumber=1)
-    n1.giveSuccessorsKeys should equal(List(2, 3, 4))
+    n1.getSuccessorsKeys should equal(List(2, 3, 4))
   }
 
 }
