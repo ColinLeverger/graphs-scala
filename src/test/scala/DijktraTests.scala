@@ -10,7 +10,7 @@ import scala.collection.mutable.{Map => MMap}
 class DijktraTests extends FunSuite with Matchers {
 
   test("Choose T test") {
-    val D = List(10,30,99999,40)
+    val D = IndexedSeq(10,30,99999,40)
     Dijkstra.chooseT(D) should be(10,2)
   }
 
