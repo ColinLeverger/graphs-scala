@@ -12,6 +12,15 @@ case class Node(
   nodeNumber: Int,
   adjacency: MMap[Int, Int]
 ) {
+  def successorsList(graph: Graph):List[Node] = {
+    val l = for {
+      adj <- adjacency
+    } yield {
+      graph.matrix.filter(_.nodeNumber == adj._1).head
+    }
+    l.toList
+  }
+
   val infinite = 999999
   val noConnection = -1
 

@@ -2,91 +2,53 @@ package tools
 
 import graph._
 
+import scala.collection.mutable.{Map => MMap}
+
 /**
   * Created by colinleverger on 30/10/15.
   */
 object Dijkstra {
 
-  def initializeDtemp(graph: Graph, n: Int) = for {
-    i <- 1 to n
-  } yield {
-    if (i == 1)
-      0
-    else
-      graph.getNode(1).dijkstraWeightOfThisSuccessor(i)
+  def chooseMin(Q: List[Node], dist: MMap[Node, Int]): Node = {
+    val l = for {
+      n <- Q
+    } yield {
+      n -> dist(n)
+    }
+    val map = l.toMap
+
+    map.minBy(_._2)._1
   }
 
-  def applyDijktra(graph: Graph): List[Int] = {
-    val X = graph.getNodesKeys
-    val n = graph.nbNodes
-    var E = List(1)
+  def applyDijktra(graph: Graph, source: Node) = {
+    var Q = List[Node]()
+    var dist = MMap[Node, Int]()
+    var prev = MMap[Node, Option[Node]]()
 
-    var Dtemp = initializeDtemp(graph, n)
-
-    //Patcher a la volée Dtemp pour remplacer ce qui est dans E.
     for {
-      i <- 2 to n
-      (tWeight, tNodeNumber) = chooseT(Dtemp)
-      if (!E.contains(tNodeNumber))
+      v <- graph.matrix
     } {
-      E = tNodeNumber :: E
-      println("\ntNodeNumber: " + tNodeNumber)
+      dist(v) = 9999
+      prev(v) = None
+      Q = v :: Q
+    }
+
+    dist(source) = 0
+
+    while (!Q.isEmpty) {
+      val u = chooseMin(Q, dist)
+      Q = Q.filter(_ != u)
+
       for {
-        xKey <- graph.getNode(tNodeNumber).getSuccessorsKeys
+        v <- u.successorsList(graph)
       } {
-        println("Dtemp: " + Dtemp)
-        println("xKey : " + xKey)
-        val x = graph.getNode(xKey)
-        val t = graph.getNode(tNodeNumber)
-        val v = min(Dtemp(xKey - 2), Dtemp(tNodeNumber - 2) + t.dijkstraWeightOfThisSuccessor(xKey))
-        println("v: " + v)
-        println("xKey - 2: " + (xKey - 2))
-        println("Seq(v): " + Seq(v))
-        Dtemp = Dtemp.updated(xKey - 2, v)
-        println("Dtemp after: " + Dtemp)
+        val alt = dist(u) + u.dijkstraWeightOfThisSuccessor(v.nodeNumber)
+        if (alt < dist(v)) {
+          dist(v) = alt
+          prev(v) = Option(u)
+        }
       }
     }
-    val D = 0 :: Dtemp.toList
-    D
+    (dist, prev)
   }
-
-  /**
-    * Choose T with the shortest path.
-    * Return the Weight and the nodeNumber of this node
-    * @param D
-    * @return (tWeight, tNodeNumber)
-    */
-  def chooseT(D: IndexedSeq[Int]): (Int, Int) = (D.zipWithIndex.min._1, D.zipWithIndex.min._2 + 2)
-
-  /**
-    * Choose the min between to ints
-    * @param a
-    * @param b
-    * @return min
-    */
-  def min(a: Int, b: Int): Int = List(a, b).min
-
-  /*
-    permet de connaitre le poids du chemin le plus court
-X = {1,2,…,n}
-S= 1
-P[i,j] = poids de l'arc (i,j)
-D[i] = plus courte distance courante de s(i) à i
-X-E = nœuds accessibles
-Debut
-E = {1}
-pour i de 2 à n faire
-D[i] <- P[1,i]
-finpour
-
-pour i de 2 à n faire
-choisir t parmi X-E tel que D[t] soit min
-ajouter t à E
-pour chaque x successeur de t faire
-D[x] = min(D[x],D[t]+P[x,t])
-finpour
-finpour
-fin
-    */
-
 }

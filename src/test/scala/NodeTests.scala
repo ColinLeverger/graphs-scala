@@ -1,4 +1,4 @@
-import graph.{Graph, Node}
+import graph._
 import org.scalatest._
 
 import scala.collection.mutable.{Map => MMap}
@@ -15,6 +15,15 @@ class NodeTests extends FunSuite with Matchers {
     n1.numberOfSuccessor should be(2)
     n1.addArc(22, 3)
     n1.numberOfSuccessor should be(3)
+  }
+
+  test("successorsList test") {
+    val n1 = Node(adjacency=MMap(2 -> 1,3->1),nodeNumber=1)
+    val n2 = Node(adjacency=MMap(1 -> 1),nodeNumber=2)
+    val n3 = Node(adjacency=MMap(1 -> 1),nodeNumber=3)
+
+    val graph = new Graph(List(n1,n2,n3))
+    n1.successorsList(graph) should be (List(n2,n3))
   }
 
   test("remove a node test") {
