@@ -28,7 +28,11 @@ class DijktraTests extends FunSuite with Matchers {
     // Apply Warshall on our gaph
     val D = Dijkstra.applyDijktra(g1)
 
-    D(0) should be(10)
+    D(0) should be(0)
+    D(1) should be(10)
+    D(2) should be(50)
+    D(3) should be(30)
+    D(4) should be(60)
   }
 
   test("Dijktra algorithm test - 2") {

@@ -9,10 +9,10 @@ object Dijkstra {
 
   def applyDijktra(graph: Graph): List[Int] = {
     val X = graph.getNodes
-    var E = List(1)
     val n = graph.nbNodes
+    var E = List(1)
 
-    val Dtemp = for {
+    var Dtemp = for {
       i <- 2 to n
     } yield {
       graph.getNode(1).dijkstraWeightOfThisSuccessor(i)
@@ -21,15 +21,22 @@ object Dijkstra {
     for {
       i <- 2 to n
       (tWeight, tNodeNumber) = chooseT(Dtemp)
-      if (!E.contains(tNodeNumber))
+    //if (!E.contains(tNodeNumber))
     } {
-      E = tNodeNumber :: E
+      //E = tNodeNumber :: E
       for {
         xKey <- graph.getNode(tNodeNumber).getSuccessorsKeys
       } {
+        println("Dtemp: " + Dtemp)
         println("xKey : " + xKey)
         val x = graph.getNode(xKey)
         val t = graph.getNode(tNodeNumber)
+        val v = min(Dtemp(xKey - 2), Dtemp(tNodeNumber - 2) + t.dijkstraWeightOfThisSuccessor(xKey))
+        println("v: " + v)
+        println("xKey - 2: " + (xKey - 2))
+        println("Seq(v)te: " + Seq(v))
+        Dtemp = Dtemp.updated(xKey - 2, v)
+        println("Dtemp after: " + Dtemp)
       }
     }
     val D = 0 :: Dtemp.toList
