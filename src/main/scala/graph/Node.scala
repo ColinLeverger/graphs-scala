@@ -12,7 +12,7 @@ case class Node(
   nodeNumber: Int,
   adjacency: MMap[Int, Int]
 ) {
-  val infinite = 99999
+  val infinite = 999999
   val noConnection = -1
 
   /**

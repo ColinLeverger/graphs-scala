@@ -8,6 +8,16 @@ class Graph(
   _matrix: List[Node]
 ) {
 
+  def getNodesKeys = {
+    val nodes = for {
+      n <- _matrix
+    } yield {
+      n.nodeNumber
+    }
+    nodes.toList.sortWith(_ < _)
+  }
+
+
   /**
     * Add a node to a graph
     * @param node
@@ -60,14 +70,7 @@ class Graph(
     * Return the node numbered by the param nodeNumber
     * @return ListOfNodes
     */
-  def getNodes: List[Int] = {
-    val listOfNodes = for {
-      node <- _matrix
-    } yield {
-      node.nodeNumber
-    }
-    listOfNodes.sortWith(_ < _)
-  }
+  def getNodes: List[Node] = _matrix
 
   /**
     * Return the sucessors of this node

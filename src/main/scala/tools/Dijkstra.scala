@@ -7,23 +7,30 @@ import graph._
   */
 object Dijkstra {
 
+  def initializeDtemp(graph: Graph, n: Int) = for {
+    i <- 1 to n
+  } yield {
+    if (i == 1)
+      0
+    else
+      graph.getNode(1).dijkstraWeightOfThisSuccessor(i)
+  }
+
   def applyDijktra(graph: Graph): List[Int] = {
-    val X = graph.getNodes
+    val X = graph.getNodesKeys
     val n = graph.nbNodes
     var E = List(1)
 
-    var Dtemp = for {
-      i <- 2 to n
-    } yield {
-      graph.getNode(1).dijkstraWeightOfThisSuccessor(i)
-    }
+    var Dtemp = initializeDtemp(graph, n)
 
+    //Patcher a la volée Dtemp pour remplacer ce qui est dans E.
     for {
       i <- 2 to n
       (tWeight, tNodeNumber) = chooseT(Dtemp)
-    //if (!E.contains(tNodeNumber))
+      if (!E.contains(tNodeNumber))
     } {
-      //E = tNodeNumber :: E
+      E = tNodeNumber :: E
+      println("\ntNodeNumber: " + tNodeNumber)
       for {
         xKey <- graph.getNode(tNodeNumber).getSuccessorsKeys
       } {
@@ -34,7 +41,7 @@ object Dijkstra {
         val v = min(Dtemp(xKey - 2), Dtemp(tNodeNumber - 2) + t.dijkstraWeightOfThisSuccessor(xKey))
         println("v: " + v)
         println("xKey - 2: " + (xKey - 2))
-        println("Seq(v)te: " + Seq(v))
+        println("Seq(v): " + Seq(v))
         Dtemp = Dtemp.updated(xKey - 2, v)
         println("Dtemp after: " + Dtemp)
       }
@@ -47,7 +54,7 @@ object Dijkstra {
     * Choose T with the shortest path.
     * Return the Weight and the nodeNumber of this node
     * @param D
-    * @return
+    * @return (tWeight, tNodeNumber)
     */
   def chooseT(D: IndexedSeq[Int]): (Int, Int) = (D.zipWithIndex.min._1, D.zipWithIndex.min._2 + 2)
 

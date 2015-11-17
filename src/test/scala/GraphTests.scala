@@ -19,6 +19,13 @@ class GraphTests extends FunSuite with Matchers {
     updatedGraph.nbNodes should be(2)
   }
 
+  test("getNodesKeys test") {
+    val n1 = Node(1,MMap(1 -> 1))
+    val n2 = Node(2,MMap(4 -> 1))
+    val graph = new Graph(List(n1,n2))
+    graph.getNodesKeys should be (1,2)
+  }
+
   test("del node test") {
     val n1 = Node(1,MMap(1 -> 1))
     val n2 = Node(2,MMap(4 -> 1))
