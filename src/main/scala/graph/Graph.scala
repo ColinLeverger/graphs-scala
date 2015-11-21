@@ -24,7 +24,7 @@ class Graph(
 
   /**
     * Return if this graph is empty
-    * @return emptyness of this graph
+    * @return emptiness of this graph
     */
   def isEmpty: Boolean = _nodes.isEmpty
 
@@ -63,10 +63,10 @@ class Graph(
   /**
     * Return the sucessors of the given node in this graph
     * @param node
-    * @return Map[Int,Int] wich represents the successors
+    * @return Map[Int,Int] which represents the successors
     */
   def getSuccessors(node: Node): Map[Int, Int] = {
-    getNode(node.nodeNumber).successors
+    getNode(node.nodeNumber).getSuccessors
   }
 
   /**

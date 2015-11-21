@@ -10,8 +10,8 @@ class GraphTests extends FunSuite with Matchers {
 
   //Map[Int,List[Map[Int,Int]]]
   test("add node test") {
-    val n1 = Node(1,MMap(1 -> 1))
-    val n2 = Node(2,MMap(4 -> 1))
+    val n1 = Node(1, MMap(1 -> 1))
+    val n2 = Node(2, MMap(4 -> 1))
     val graph = new Graph(List(n1))
     graph.isEmpty should be(false)
     graph.nbNodes should be(1)
@@ -20,16 +20,16 @@ class GraphTests extends FunSuite with Matchers {
   }
 
   test("getNodesKeys test") {
-    val n1 = Node(1,MMap(1 -> 1))
-    val n2 = Node(2,MMap(4 -> 1))
-    val graph = new Graph(List(n1,n2))
-    graph.getNodesKeys should be (List(1,2))
+    val n1 = Node(1, MMap(1 -> 1))
+    val n2 = Node(2, MMap(4 -> 1))
+    val graph = new Graph(List(n1, n2))
+    graph.getNodesKeys should be(List(1, 2))
   }
 
   test("del node test") {
-    val n1 = Node(1,MMap(1 -> 1))
-    val n2 = Node(2,MMap(4 -> 1))
-    val n3 = Node(3,MMap(5 -> 1))
+    val n1 = Node(1, MMap(1 -> 1))
+    val n2 = Node(2, MMap(4 -> 1))
+    val n3 = Node(3, MMap(5 -> 1))
     val graph = new Graph(List(n1, n2, n3))
     graph.nbNodes should be(3)
 
@@ -40,22 +40,22 @@ class GraphTests extends FunSuite with Matchers {
   }
 
   test("connexion between nodes test") {
-    val n1 = Node(1,MMap(2 -> 1, 3 -> 1))
-    val n2 = Node(2,MMap(3 -> 1, 4 -> 1))
+    val n1 = Node(1, MMap(2 -> 1, 3 -> 1))
+    val n2 = Node(2, MMap(3 -> 1, 4 -> 1))
     val graph = new Graph(List(n1, n2))
     graph.isArc(1, 2) should be(true)
     graph.isArc(2, 1) should be(false)
   }
 
   test("nbNode test") {
-    val n1 = Node(1,MMap(2 -> 1, 3 -> 1))
-    val n2 = Node(2,MMap(3 -> 1, 4 -> 1))
+    val n1 = Node(1, MMap(2 -> 1, 3 -> 1))
+    val n2 = Node(2, MMap(3 -> 1, 4 -> 1))
     val graph = new Graph(List(n1, n2))
     graph.nbNodes should be(2)
   }
 
   test("positive weight between nodes test") {
-    val n1 = Node(1,MMap(2 -> 23, 3 -> 24))
+    val n1 = Node(1, MMap(2 -> 23, 3 -> 24))
     val graph = new Graph(List(n1))
 
     graph.warshallWeightBetweenTheseTwoNodes(1, 2) should be(23)

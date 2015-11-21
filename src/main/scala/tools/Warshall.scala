@@ -2,8 +2,6 @@ package tools
 
 import graph._
 
-import scala.collection.mutable.{Map => MMap}
-
 /**
   * Created by colinleverger on 30/10/15.
   */
@@ -23,7 +21,7 @@ object Warshall {
       y <- 1 to n
     } {
       if (graph.isArc(x, i) && graph.isArc(i, y) && !graph.isArc(x, y)) {
-        println("Adding an arc from node " + x + " to node " + y)
+        //println("Adding an arc from node " + x + " to node " + y) //DEBUG
         graph.getNode(x).addArc(y, 1)
       }
     }

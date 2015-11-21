@@ -21,7 +21,7 @@ class WarshallTests extends FunSuite with Matchers {
     // Add the nodes inside a new graph
     val g1 = new Graph(List(n1, n2, n3, n4, n5, n6))
 
-    // Apply Warshall on our gaph
+    // Apply Warshall on our graph
     Warshall.applyWarshall(g1)
 
     // Check the output: is my Warshall function doing the good things ?
@@ -43,7 +43,7 @@ class WarshallTests extends FunSuite with Matchers {
     // Add the nodes inside a new graph
     val g1 = new Graph(List(n1, n2, n3, n4))
 
-    // Apply Warshall on our gaph
+    // Apply Warshall on our graph
     Warshall.applyWarshall(g1)
 
     // Check the output: is my Warshall function doing the good things ?

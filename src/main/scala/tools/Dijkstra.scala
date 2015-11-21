@@ -39,7 +39,7 @@ object Dijkstra {
     * Recursive function to give the shortest path to go to the given node n
     * @param n
     * @param prev
-    * @return
+    * @return list
     */
   def giveShortestPath(n: Int, prev: MMap[Int, Option[Int]]): List[Int] = {
     prev(n) match {
@@ -50,7 +50,7 @@ object Dijkstra {
 
   /**
     * Apply the Dijkstra algorithm to the given graph, starting
-    * by the givent source (node)
+    * by the given source (node)
     * @param graph
     * @param source
     * @return (dist,prev)
@@ -71,12 +71,12 @@ object Dijkstra {
 
     dist(source.nodeNumber) = 0
 
-    while (!Q.isEmpty) {
+    while (Q.nonEmpty) {
       val u = chooseMin(Q, dist)
       Q = Q.filter(_ != u)
 
       for {
-        v <- graph.getNode(u).successorsList(graph)
+        v <- graph.getNode(u).getSuccessorsList(graph)
         nodeNumber = v.nodeNumber
       } {
         val alt = dist(u) + graph.getNode(u).weightOfThisSuccessor(nodeNumber, "d")

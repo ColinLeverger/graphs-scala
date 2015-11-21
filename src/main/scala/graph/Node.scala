@@ -38,9 +38,9 @@ case class Node(
     */
   def getSuccessorsKeys: List[Int] = {
     val successorsKeys = for {
-      successor <- adjacency
+      adj <- adjacency
     } yield {
-      successor._1
+      adj._1
     }
     successorsKeys.toList.sortWith(_ < _)
   }
@@ -50,14 +50,20 @@ case class Node(
     * @param graph
     * @return
     */
-  def successorsList(graph: Graph): List[Node] = {
-    val l = for {
+  def getSuccessorsList(graph: Graph): List[Node] = {
+    val successorsList = for {
       adj <- adjacency
     } yield {
       graph.getNodes.filter(_.nodeNumber == adj._1).head
     }
-    l.toList
+    successorsList.toList
   }
+
+  /**
+    * Give the successors of this node
+    * @return successors (Map)
+    */
+  def getSuccessors: Map[Int, Int] = adjacency.toMap
 
   /**
     * Give the weight of the successor.
@@ -66,18 +72,12 @@ case class Node(
     * @param n
     * @return weight
     */
-  def weightOfThisSuccessor(n: Int, algo: String): Int = {
-    algo match {
-      case "w" => adjacency.get(n).getOrElse(noConnection)
-      case "d" => adjacency.get(n).getOrElse(infinite)
+  def weightOfThisSuccessor(n: Int, algorithmCode: String): Int = {
+    algorithmCode match {
+      case "w" => adjacency.getOrElse(n,noConnection)
+      case "d" => adjacency.getOrElse(n,infinite)
     }
   }
-
-  /**
-    * Give the successors of this node
-    * @return successors (Map)
-    */
-  def successors: Map[Int, Int] = adjacency.toMap
 
   /**
     * Count the number of successors
@@ -88,6 +88,8 @@ case class Node(
   /**
     * Print the node
     */
-  def printNode = adjacency.foreach(println)
+  def printNode {
+    adjacency.foreach(println)
+  }
 }
 
