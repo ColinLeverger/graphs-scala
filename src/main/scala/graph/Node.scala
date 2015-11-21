@@ -12,15 +12,6 @@ case class Node(
   nodeNumber: Int,
   adjacency: MMap[Int, Int]
 ) {
-  def successorsList(graph: Graph):List[Node] = {
-    val l = for {
-      adj <- adjacency
-    } yield {
-      graph.matrix.filter(_.nodeNumber == adj._1).head
-    }
-    l.toList
-  }
-
   val infinite = 999999
   val noConnection = -1
 
@@ -35,10 +26,10 @@ case class Node(
 
   /**
     * Remove a link between two arcs
-    * @param key to remove
+    * @param keyToRemove
     */
-  def delArc(key: Int) {
-    adjacency -= key
+  def delArc(keyToRemove: Int) {
+    adjacency -= keyToRemove
   }
 
   /**
@@ -51,25 +42,36 @@ case class Node(
     } yield {
       successor._1
     }
-
     successorsKeys.toList.sortWith(_ < _)
   }
 
   /**
-    * Give the weight of the successor.
-    * If no connection, return -1
-    * @param n
-    * @return weight
+    * Return a the list of the successors
+    * @param graph
+    * @return
     */
-  def positiveWeightOfThisSuccessor(n: Int): Int = adjacency.get(n).getOrElse(noConnection)
+  def successorsList(graph: Graph): List[Node] = {
+    val l = for {
+      adj <- adjacency
+    } yield {
+      graph.getNodes.filter(_.nodeNumber == adj._1).head
+    }
+    l.toList
+  }
 
   /**
-    * Give the weight of the successor
-    * If no connection yet, return 99999
+    * Give the weight of the successor.
+    * If no connection && warshall algorithm, return -1
+    * If no connection && dijkstra algorithm, return infinite
     * @param n
     * @return weight
     */
-  def dijkstraWeightOfThisSuccessor(n: Int): Int = adjacency.get(n).getOrElse(infinite)
+  def weightOfThisSuccessor(n: Int, algo: String): Int = {
+    algo match {
+      case "w" => adjacency.get(n).getOrElse(noConnection)
+      case "d" => adjacency.get(n).getOrElse(infinite)
+    }
+  }
 
   /**
     * Give the successors of this node
