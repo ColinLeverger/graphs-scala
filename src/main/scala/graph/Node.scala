@@ -13,7 +13,6 @@ case class Node(
   adjacency: MMap[Int, Int]
 ) {
   val infinite = 999999
-  val noConnection = -1
 
   /**
     * Establish a link between two arcs
@@ -72,11 +71,8 @@ case class Node(
     * @param n
     * @return weight
     */
-  def weightOfThisSuccessor(n: Int, algorithmCode: String): Int = {
-    algorithmCode match {
-      case "w" => adjacency.getOrElse(n,noConnection)
-      case "d" => adjacency.getOrElse(n,infinite)
-    }
+  def weightOfThisSuccessor(n: Int): Int = {
+    adjacency.getOrElse(n, infinite)
   }
 
   /**

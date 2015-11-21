@@ -48,7 +48,7 @@ class DijktraTests extends FunSuite with Matchers {
     val n7 = Node(7, MMap(5 -> 5, 6 -> 7))
 
     // Add the nodes inside a new graph
-    val g1 = new Graph(List(n1, n2, n3, n4, n5,n6,n7))
+    val g1 = new Graph(List(n1, n2, n3, n4, n5, n6, n7))
 
     // Apply Dijktra on our graph
     val (dist, prev) = Dijkstra.applyDijkstra(g1, n1)
@@ -62,7 +62,7 @@ class DijktraTests extends FunSuite with Matchers {
     Dijkstra.giveShortestPathWeight(n2, dist) should be(2)
     Dijkstra.giveShortestPathWeight(n1, dist) should be(0)
 
-    Dijkstra.giveShortestPath(n7.nodeNumber, prev) should be(List(2,3,5,7))
+    Dijkstra.giveShortestPath(n7.nodeNumber, prev) should be(List(2, 3, 5, 7))
   }
 
 }

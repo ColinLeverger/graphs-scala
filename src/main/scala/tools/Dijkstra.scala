@@ -79,7 +79,7 @@ object Dijkstra {
         v <- graph.getNode(u).getSuccessorsList(graph)
         nodeNumber = v.nodeNumber
       } {
-        val alt = dist(u) + graph.getNode(u).weightOfThisSuccessor(nodeNumber, "d")
+        val alt = dist(u) + graph.getNode(u).weightOfThisSuccessor(nodeNumber)
         if (alt < dist(nodeNumber)) {
           dist(nodeNumber) = alt
           prev(nodeNumber) = Option(u)

@@ -84,24 +84,13 @@ class Graph(
 
   /**
     * Return the positive weight between the two given nodes keys
-    * If there is no connection between the two nodes given, return -1
-    * @param node1
-    * @param node2
-    * @return weight
-    */
-  def warshallWeightBetweenTheseTwoNodes(node1: Int, node2: Int): Int = {
-    getNode(node1).weightOfThisSuccessor(node2,"w")
-  }
-
-  /**
-    * Return the positive weight between the two given nodes keys
     * If there is no connection between the two nodes given, return infinite
     * @param node1
     * @param node2
     * @return weight
     */
   def dijkstraWeightBetweenTheseTwoNodes(node1: Int, node2: Int): Int = {
-    getNode(node1).weightOfThisSuccessor(node2,"d")
+    getNode(node1).weightOfThisSuccessor(node2)
   }
 
   /**

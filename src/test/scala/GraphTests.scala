@@ -53,14 +53,4 @@ class GraphTests extends FunSuite with Matchers {
     val graph = new Graph(List(n1, n2))
     graph.nbNodes should be(2)
   }
-
-  test("positive weight between nodes test") {
-    val n1 = Node(1, MMap(2 -> 23, 3 -> 24))
-    val graph = new Graph(List(n1))
-
-    graph.warshallWeightBetweenTheseTwoNodes(1, 2) should be(23)
-    graph.warshallWeightBetweenTheseTwoNodes(1, 3) should be(24)
-    graph.warshallWeightBetweenTheseTwoNodes(1, 4) should be(-1)
-  }
-
 }
