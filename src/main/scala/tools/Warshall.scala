@@ -8,6 +8,11 @@ import scala.collection.mutable.{Map => MMap}
   */
 object Warshall {
 
+  /**
+    * Initialize the routing map
+    * @param n
+    * @return
+    */
   def initRouting(n: Int): MMap[Map[Int, Int], Int] = {
     val initMMap = MMap[Map[Int, Int], Int]()
     for {

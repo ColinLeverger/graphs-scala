@@ -7,8 +7,7 @@ import scala.collection.mutable.{Map => MMap}
   * Created by colinleverger on 26/10/15.
   */
 class GraphTests extends FunSuite with Matchers {
-
-  //Map[Int,List[Map[Int,Int]]]
+  
   test("add node test") {
     val n1 = Node(1, MMap(1 -> 1))
     val n2 = Node(2, MMap(4 -> 1))
