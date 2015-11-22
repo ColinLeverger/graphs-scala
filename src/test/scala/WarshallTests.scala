@@ -26,7 +26,7 @@ class WarshallTests extends FunSuite with Matchers {
 
     // Check the output: is my Warshall function doing the good things ?
     // Successors check
-    g1.getNode(1).getSuccessorsKeys should be(List(2, 3, 4, 5))
+    g1.getNode(1).getSuccessorsKeys should be(List(2, 3, 4, 5)) // ie the successors of node 1 should be 2, 3, 4 and 5.
     g1.getNode(2).getSuccessorsKeys should be(List(3, 4, 5))
     g1.getNode(3).getSuccessorsKeys should be(List(3, 4, 5))
     g1.getNode(4).getSuccessorsKeys should be(List(3, 4, 5))
@@ -34,26 +34,25 @@ class WarshallTests extends FunSuite with Matchers {
     g1.getNode(6).getSuccessorsKeys should be(List(3, 4, 5))
 
     // Routing check
-    routing(Map(1->2)) should be (2)
-    routing(Map(1->3)) should be (2)
-    routing(Map(1->4)) should be (4)
-    routing(Map(1->5)) should be (2)
-    routing(Map(2->3)) should be (3)
-    routing(Map(2->4)) should be (5)
-    routing(Map(2->5)) should be (5)
-    routing(Map(3->3)) should be (5)
-    routing(Map(3->4)) should be (5)
-    routing(Map(3->5)) should be (5)
-    routing(Map(4->3)) should be (3)
-    routing(Map(4->4)) should be (5)
-    routing(Map(4->5)) should be (3)
-    routing(Map(5->3)) should be (4)
-    routing(Map(5->4)) should be (4)
-    routing(Map(5->5)) should be (4)
-    routing(Map(6->3)) should be (3)
-    routing(Map(6->4)) should be (5)
-    routing(Map(6->5)) should be (5)
-
+    routing(Map(1 -> 2)) should be(2)
+    routing(Map(1 -> 3)) should be(2)
+    routing(Map(1 -> 4)) should be(4)
+    routing(Map(1 -> 5)) should be(2)
+    routing(Map(2 -> 3)) should be(3)
+    routing(Map(2 -> 4)) should be(5)
+    routing(Map(2 -> 5)) should be(5)
+    routing(Map(3 -> 3)) should be(5)
+    routing(Map(3 -> 4)) should be(5)
+    routing(Map(3 -> 5)) should be(5)
+    routing(Map(4 -> 3)) should be(3)
+    routing(Map(4 -> 4)) should be(5)
+    routing(Map(4 -> 5)) should be(3)
+    routing(Map(5 -> 3)) should be(4)
+    routing(Map(5 -> 4)) should be(4)
+    routing(Map(5 -> 5)) should be(4)
+    routing(Map(6 -> 3)) should be(3)
+    routing(Map(6 -> 4)) should be(5)
+    routing(Map(6 -> 5)) should be(5)
   }
 
   test("Warshall algorithm test - graph provided in the exam") {
