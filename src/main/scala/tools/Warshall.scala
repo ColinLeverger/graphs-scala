@@ -8,6 +8,17 @@ import scala.collection.mutable.{Map => MMap}
   */
 object Warshall {
 
+  def initRouting(n: Int): MMap[Map[Int, Int], Int] = {
+    val initMMap = MMap[Map[Int, Int], Int]()
+    for {
+      i <- 1 to n
+      j <- 1 to n
+    } {
+      initMMap(Map(i -> j)) = 0
+    }
+    initMMap
+  }
+
   /**
     * Apply Warshall to the given graph
     * @param graph
@@ -15,7 +26,7 @@ object Warshall {
     */
   def applyWarshall(graph: Graph): MMap[Map[Int, Int], Int] = {
     val n = graph.nbNodes
-    val routing = MMap[Map[Int, Int], Int]()
+    val routing = initRouting(n)
 
     for {
       i <- 1 to n
@@ -23,7 +34,9 @@ object Warshall {
       y <- 1 to n
     } {
       if (graph.isArc(x, i)) {
-        routing(Map(x -> i)) = x
+        if (routing(Map(x -> i)) == 0) {
+          routing(Map(x -> i)) = i
+        }
         if (graph.isArc(i, y) && !graph.isArc(x, y)) {
           //println("Adding an arc from node " + x + " to node " + y) //DEBUG
           graph.getNode(x).addArc(y, 1)
