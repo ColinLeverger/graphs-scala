@@ -9,7 +9,7 @@ import scala.collection.mutable.{Map => MMap}
   */
 object Dijkstra {
 
-  val infinite = 99999
+  val infinite = Int.MaxValue
 
   /**
     * Choose the minimum value between a node and its predecessor
@@ -23,6 +23,7 @@ object Dijkstra {
     } yield {
       n -> dist(n)
     }
+    // Find min by value, and then give the key of this min
     l.toMap.minBy(_._2)._1
   }
 

@@ -12,14 +12,14 @@ case class Node(
   nodeNumber: Int,
   adjacency: MMap[Int, Int]
 ) {
-  val infinite = 999999
+  val infinite = Int.MaxValue
 
   /**
     * Establish a link between two arcs
     * @param key
     * @param value
     */
-  def addArc(key: Int, value: Int) {
+  def addArc(key: Int, value: Int): Unit = {
     adjacency(key) = value
   }
 
@@ -27,7 +27,7 @@ case class Node(
     * Remove a link between two arcs
     * @param keyToRemove
     */
-  def delArc(keyToRemove: Int) {
+  def delArc(keyToRemove: Int): Unit = {
     adjacency -= keyToRemove
   }
 
@@ -66,14 +66,11 @@ case class Node(
 
   /**
     * Give the weight of the successor.
-    * If no connection && warshall algorithm, return -1
     * If no connection && dijkstra algorithm, return infinite
     * @param n
     * @return weight
     */
-  def weightOfThisSuccessor(n: Int): Int = {
-    adjacency.getOrElse(n, infinite)
-  }
+  def weightOfThisSuccessor(n: Int): Int = adjacency.getOrElse(n, infinite)
 
   /**
     * Count the number of successors
@@ -84,7 +81,7 @@ case class Node(
   /**
     * Print the node
     */
-  def printNode {
+  def printNode: Unit = {
     adjacency.foreach(println)
   }
 }

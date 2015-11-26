@@ -37,7 +37,9 @@ class Graph(
   /**
     * Print the graph
     */
-  def printGraph = _nodes.foreach(println)
+  def printGraph: Unit = {
+    _nodes.foreach(println)
+  }
 
   /**
     * Say if there is an arc between these two nodes
@@ -93,13 +95,4 @@ class Graph(
     getNode(node1).weightOfThisSuccessor(node2)
   }
 
-  /**
-    * Find the biggest element in a list of int
-    * @param xs
-    * @return
-    */
-  def max(xs: List[Int]): Int = {
-    if (xs.isEmpty) throw new NoSuchElementException
-    xs.reduceLeft((x, y) => if (x > y) x else y)
-  }
 }
