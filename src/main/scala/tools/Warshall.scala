@@ -27,7 +27,7 @@ object Warshall {
   /**
     * Apply Warshall to the given graph
     * @param graph
-    * @return nothing, it modify the graph itself!
+    * @return routing
     */
   def applyWarshall(graph: Graph): MMap[Map[Int, Int], Int] = {
     val n = graph.nbNodes

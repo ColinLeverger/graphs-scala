@@ -63,6 +63,7 @@ class DijktraTests extends FunSuite with Matchers {
     Dijkstra.giveShortestPathWeight(n1, dist) should be(0)
 
     Dijkstra.giveShortestPath(n7.nodeNumber, prev) should be(List(2, 3, 5, 7))
+    Dijkstra.giveShortestPath(n6.nodeNumber, prev) should be(List(2, 3, 6))
   }
 
 }
